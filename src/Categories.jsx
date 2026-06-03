@@ -1,12 +1,18 @@
 import React from 'react'
 
+// Импортируйте ваши SVG файлы (пути могут отличаться)
+import lipsSvg from './assets/icons/lips.svg'
+import botoxSvg from './assets/icons/botox.svg'
+import bioSvg from './assets/icons/bio.svg'
+import hardwareSvg from './assets/icons/hardware.svg'
+import facialSvg from './assets/icons/facial.svg'
+
 const categories = [
   { 
     id: 1, 
     name: 'Увеличение губ', 
-    icon: 'fa-lips', 
-    color: '#ff69b4',
-    emoji: '💋',
+    svgPath: lipsSvg,
+    color: '#ffb6c1',
     services: [
       { id: 11, name: 'Контур губ', price: 8000, duration: '30 мин' },
       { id: 12, name: 'Биоревитализация губ', price: 12000, duration: '45 мин' },
@@ -17,9 +23,8 @@ const categories = [
   { 
     id: 2, 
     name: 'Ботокс', 
-    icon: 'fa-syringe', 
-    color: '#ff85b3',
-    emoji: '💉',
+    svgPath: botoxSvg,
+    color: '#ffb6c1',
     services: [
       { id: 21, name: 'Ботокс лба', price: 8000, duration: '20 мин' },
       { id: 22, name: 'Ботокс межбровья', price: 7000, duration: '20 мин' },
@@ -30,9 +35,8 @@ const categories = [
   { 
     id: 3, 
     name: 'Биоревитализация', 
-    icon: 'fa-droplet', 
-    color: '#ff77aa',
-    emoji: '💎',
+    svgPath: bioSvg,
+    color: '#ffb6c1',
     services: [
       { id: 31, name: 'Биоревитализация лица', price: 12000, duration: '45 мин' },
       { id: 32, name: 'Биоревитализация шеи', price: 10000, duration: '40 мин' },
@@ -42,9 +46,8 @@ const categories = [
   { 
     id: 4, 
     name: 'Аппаратная косметология', 
-    icon: 'fa-microchip', 
-    color: '#ff99cc',
-    emoji: '⚙️',
+    svgPath: hardwareSvg,
+    color: '#ffb6c1',
     services: [
       { id: 41, name: 'RF-лифтинг', price: 5000, duration: '60 мин' },
       { id: 42, name: 'Ультразвуковая чистка', price: 4000, duration: '50 мин' },
@@ -55,9 +58,8 @@ const categories = [
   { 
     id: 5, 
     name: 'Чистка лица', 
-    icon: 'fa-face-smile', 
-    color: '#ff88bb',
-    emoji: '✨',
+    svgPath: facialSvg,
+    color: '#ffb6c1',
     services: [
       { id: 51, name: 'Механическая чистка', price: 3500, duration: '60 мин' },
       { id: 52, name: 'Ультразвуковая чистка', price: 4000, duration: '50 мин' },
@@ -68,9 +70,18 @@ const categories = [
 ]
 
 function Categories({ onSelectCategory }) {
+  const handleInstagramClick = () => {
+    window.open('https://instagram.com/bogatyreva.amina_', '_blank')
+  }
+
   return (
     <div className="categories">
-      <h1>Прайс-лист</h1>
+      <div className="header-with-instagram">
+        <h1>Прайс-лист</h1>
+        <div className="instagram-icon" onClick={handleInstagramClick}>
+          <i className="fab fa-instagram"></i>
+        </div>
+      </div>
       <div className="categories-grid">
         {categories.map(cat => (
           <div 
@@ -78,8 +89,9 @@ function Categories({ onSelectCategory }) {
             className="category-card"
             onClick={() => onSelectCategory(cat)}
           >
-            <div className="bg-emoji">{cat.emoji}</div>
-            <i className={`fas ${cat.icon}`} style={{ color: cat.color }}></i>
+            <div className="icon-simple">
+              <img src={cat.svgPath} alt={cat.name} className="category-svg" />
+            </div>
             <h3>{cat.name}</h3>
           </div>
         ))}

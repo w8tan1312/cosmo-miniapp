@@ -41,17 +41,22 @@ body::before {
   z-index: 1;
 }
 
-/* Заголовок */
+/* Шапка с Instagram */
+.header-with-instagram {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  position: relative;
+}
+
 .categories h1 {
   font-family: 'Playfair Display', serif;
   font-size: 32px;
-  margin-bottom: 28px;
-  text-align: center;
-  color: #d63384;
+  color: #f0a0b0;
   font-weight: 600;
   letter-spacing: -0.5px;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
-  position: relative;
+  margin: 0;
 }
 
 .categories h1::after {
@@ -59,9 +64,33 @@ body::before {
   display: block;
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, #ff69b4, #ffb6d9);
-  margin: 12px auto 0;
+  background: linear-gradient(90deg, #f0a0b0, #f8c0d0);
+  margin: 8px 0 0;
   border-radius: 2px;
+}
+
+/* Instagram иконка */
+.instagram-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #f0a0b0, #f8c0d0);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.instagram-icon i {
+  font-size: 22px;
+  color: white;
+}
+
+.instagram-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(240, 160, 176, 0.4);
 }
 
 /* Сетка категорий */
@@ -76,22 +105,19 @@ body::before {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(5px);
   border-radius: 24px;
-  padding: 22px 12px;
+  padding: 20px 12px;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-  position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(255, 105, 180, 0.25);
-  transform: scale(1);
+  border: 1px solid rgba(240, 160, 176, 0.25);
 }
 
 .category-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
   background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(255, 105, 180, 0.5);
+  border-color: rgba(240, 160, 176, 0.5);
 }
 
 .category-card:active {
@@ -99,76 +125,31 @@ body::before {
   transition: transform 0.05s;
 }
 
-.category-card:active i {
-  transform: scale(0.92);
-}
-
-.category-card::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 105, 180, 0.4);
-  transform: translate(-50%, -50%);
-  transition: width 0.4s, height 0.4s;
-  pointer-events: none;
-}
-
-.category-card:active::after {
-  width: 300px;
-  height: 300px;
-  opacity: 0;
-  transition: width 0.2s, height 0.2s, opacity 0.2s;
-}
-
-.bg-emoji {
-  position: absolute;
-  bottom: -15px;
-  right: -15px;
-  font-size: 70px;
-  opacity: 0.12;
-  pointer-events: none;
-  transform: rotate(-8deg);
-  transition: transform 0.3s;
-}
-
-.category-card:hover .bg-emoji {
-  transform: rotate(-3deg) scale(1.05);
-  opacity: 0.18;
-}
-
-.category-card i {
-  font-size: 32px;
+/* Простая иконка без кружка */
+.icon-simple {
   margin-bottom: 12px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.7);
-  padding: 10px;
-  border-radius: 50%;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
   transition: all 0.3s;
-  color: #ff69b4 !important;
-  text-shadow: none;
-  width: 52px;
-  height: 52px;
 }
 
-.category-card:hover i {
+.category-card:hover .icon-simple {
   transform: scale(1.05);
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 6px 15px rgba(255, 105, 180, 0.2);
 }
 
+/* SVG иконка - уменьшенная в 2 раза */
+.category-svg {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(67%) sepia(18%) saturate(600%) hue-rotate(280deg) brightness(95%) contrast(92%);
+}
+
+/* Название категории - нежно-розовое */
 .category-card h3 {
   font-family: 'Poppins', sans-serif;
   font-size: 13px;
   font-weight: 600;
-  color: #d63384;
-  margin-top: 10px;
+  color: #e898a8;
+  margin-top: 8px;
   letter-spacing: 0.3px;
   word-break: break-word;
   max-width: 100%;
@@ -193,7 +174,7 @@ body::before {
   align-items: center;
   cursor: pointer;
   transition: all 0.3s;
-  border: 1px solid rgba(255, 105, 180, 0.2);
+  border: 1px solid rgba(240, 160, 176, 0.2);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
@@ -203,8 +184,8 @@ body::before {
 }
 
 .service-card.selected {
-  background: rgba(255, 220, 240, 0.95);
-  border-color: #ff69b4;
+  background: rgba(255, 220, 230, 0.95);
+  border-color: #f0a0b0;
   transform: scale(1.02);
 }
 
@@ -212,20 +193,20 @@ body::before {
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
   font-weight: 500;
-  color: #333;
+  color: #c08898;
   margin-bottom: 4px;
 }
 
 .service-info p {
   font-size: 12px;
-  color: #999;
+  color: #d0a0b0;
   font-weight: 300;
 }
 
 .service-price {
   font-family: 'Playfair Display', serif;
   font-weight: 600;
-  color: #d63384;
+  color: #e898a8;
   font-size: 18px;
 }
 
@@ -239,7 +220,7 @@ body::before {
   border-radius: 24px 24px 0 0;
   box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.08);
   margin-top: 20px;
-  border-top: 1px solid rgba(255, 105, 180, 0.25);
+  border-top: 1px solid rgba(240, 160, 176, 0.25);
 }
 
 .cart-total {
@@ -247,13 +228,13 @@ body::before {
   justify-content: space-between;
   margin-bottom: 12px;
   font-weight: 500;
-  color: #d63384;
+  color: #e898a8;
   font-family: 'Poppins', sans-serif;
 }
 
 .cart-footer button {
   width: 100%;
-  background: linear-gradient(135deg, #ff69b4, #ff99cc);
+  background: linear-gradient(135deg, #f0a0b0, #f8c0d0);
   color: white;
   border: none;
   padding: 14px;
@@ -267,7 +248,7 @@ body::before {
 
 .cart-footer button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255, 105, 180, 0.35);
+  box-shadow: 0 8px 20px rgba(240, 160, 176, 0.35);
 }
 
 .cart-footer button:active {
@@ -275,15 +256,16 @@ body::before {
   transition: transform 0.05s;
 }
 
+/* Кнопка назад */
 .back-btn {
   background: rgba(255, 255, 255, 0.8);
-  border: 1px solid #ff69b4;
+  border: 1px solid #f0a0b0;
   padding: 8px 18px;
   border-radius: 30px;
   font-size: 14px;
   font-weight: 500;
   font-family: 'Poppins', sans-serif;
-  color: #d63384;
+  color: #e898a8;
   cursor: pointer;
   margin-bottom: 20px;
   display: inline-flex;
@@ -293,7 +275,7 @@ body::before {
 }
 
 .back-btn:hover {
-  background: #ff69b4;
+  background: #f0a0b0;
   color: white;
   transform: translateX(-3px);
 }
@@ -308,65 +290,44 @@ body::before {
 .booking-form h1 {
   font-family: 'Playfair Display', serif;
   font-size: 26px;
-  color: #d63384;
+  color: #e898a8;
   text-align: center;
   margin-bottom: 10px;
 }
 
 .booking-form input {
   padding: 14px 16px;
-  border: 1px solid rgba(255, 105, 180, 0.3);
+  border: 1px solid rgba(240, 160, 176, 0.3);
   border-radius: 14px;
   font-size: 15px;
   font-family: 'Poppins', sans-serif;
   background: white;
-  color: #333;
+  color: #c08898;
   transition: all 0.3s;
   font-weight: 500;
 }
 
 .booking-form input::placeholder {
-  color: #bbb;
+  color: #d0a0b0;
   font-weight: 400;
 }
 
 .booking-form input:focus {
   outline: none;
-  border-color: #ff69b4;
-  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.15);
+  border-color: #f0a0b0;
+  box-shadow: 0 0 0 3px rgba(240, 160, 176, 0.15);
   background: white;
 }
 
 .booking-form input[type="date"],
 .booking-form input[type="time"] {
-  color: #333;
+  color: #c08898;
   background: white;
   position: relative;
 }
 
-.booking-form input[type="date"]::-webkit-calendar-picker-indicator,
-.booking-form input[type="time"]::-webkit-calendar-picker-indicator {
-  filter: invert(0.4);
-  cursor: pointer;
-  opacity: 0.7;
-}
-
-.booking-form input[type="date"]::-webkit-calendar-picker-indicator:hover,
-.booking-form input[type="time"]::-webkit-calendar-picker-indicator:hover {
-  opacity: 1;
-}
-
-.booking-form input:-webkit-autofill,
-.booking-form input:-webkit-autofill:hover,
-.booking-form input:-webkit-autofill:focus,
-.booking-form input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px white inset !important;
-  box-shadow: 0 0 0 30px white inset !important;
-  -webkit-text-fill-color: #333 !important;
-}
-
 .booking-form button {
-  background: linear-gradient(135deg, #ff69b4, #ff99cc);
+  background: linear-gradient(135deg, #f0a0b0, #f8c0d0);
   color: white;
   border: none;
   padding: 15px;
@@ -381,9 +342,10 @@ body::before {
 
 .booking-form button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
+  box-shadow: 0 8px 20px rgba(240, 160, 176, 0.3);
 }
 
+/* Страница успеха */
 .success {
   text-align: center;
   padding: 60px 20px;
@@ -398,18 +360,18 @@ body::before {
 .success h1 {
   font-family: 'Playfair Display', serif;
   font-size: 28px;
-  color: #d63384;
+  color: #e898a8;
   margin-bottom: 12px;
 }
 
 .success p {
   font-family: 'Poppins', sans-serif;
-  color: #666;
+  color: #d0a0b0;
 }
 
 .success button {
   margin-top: 30px;
-  background: linear-gradient(135deg, #ff69b4, #ff99cc);
+  background: linear-gradient(135deg, #f0a0b0, #f8c0d0);
   padding: 12px 32px;
   border-radius: 30px;
   font-family: 'Poppins', sans-serif;
@@ -434,13 +396,13 @@ body::before {
 .category-services h1 {
   font-family: 'Playfair Display', serif;
   font-size: 26px;
-  color: #d63384;
+  color: #e898a8;
   margin-bottom: 8px;
 }
 
 .category-desc {
   font-family: 'Poppins', sans-serif;
-  color: #999;
+  color: #d0a0b0;
   margin-bottom: 20px;
   font-size: 13px;
 }
@@ -460,15 +422,15 @@ body::before {
 .flower {
   position: absolute;
   animation: floatFlower 25s ease-in-out infinite;
-  filter: drop-shadow(0 0 2px rgba(255,105,180,0.2));
+  filter: drop-shadow(0 0 2px rgba(240, 160, 176, 0.2));
   transition: all 0.3s;
-  color: #ff85b3;
-  text-shadow: 0 0 2px rgba(255,105,180,0.2);
+  color: #f0a0b0;
+  text-shadow: 0 0 2px rgba(240, 160, 176, 0.2);
 }
 
 .flower:hover {
   opacity: 0.6 !important;
-  filter: drop-shadow(0 0 6px rgba(255,105,180,0.4));
+  filter: drop-shadow(0 0 6px rgba(240, 160, 176, 0.4));
 }
 
 @keyframes floatFlower {
