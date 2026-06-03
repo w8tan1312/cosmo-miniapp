@@ -254,7 +254,7 @@ body::before {
   transform: translateX(-3px);
 }
 
-/* Форма */
+/* ФОРМА - ИСПРАВЛЕННЫЕ СТИЛИ */
 .booking-form {
   display: flex;
   flex-direction: column;
@@ -275,14 +275,59 @@ body::before {
   border-radius: 14px;
   font-size: 15px;
   font-family: 'Poppins', sans-serif;
-  background: rgba(255, 255, 255, 0.9);
+  background: white;
+  color: #333;
   transition: all 0.3s;
+  font-weight: 500;
+}
+
+.booking-form input::placeholder {
+  color: #bbb;
+  font-weight: 400;
 }
 
 .booking-form input:focus {
   outline: none;
   border-color: #ff69b4;
   box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.15);
+  background: white;
+}
+
+/* Стили для полей даты и времени */
+.booking-form input[type="date"],
+.booking-form input[type="time"] {
+  color: #333;
+  background: white;
+  position: relative;
+}
+
+.booking-form input[type="date"]::-webkit-calendar-picker-indicator,
+.booking-form input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.4);
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.booking-form input[type="date"]::-webkit-calendar-picker-indicator:hover,
+.booking-form input[type="time"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Убираем авто-стили браузера */
+.booking-form input:-webkit-autofill,
+.booking-form input:-webkit-autofill:hover,
+.booking-form input:-webkit-autofill:focus,
+.booking-form input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  box-shadow: 0 0 0 30px white inset !important;
+  -webkit-text-fill-color: #333 !important;
+}
+
+/* Цвет текста при вводе */
+.booking-form input:focus,
+.booking-form input:active,
+.booking-form input:not(:placeholder-shown) {
+  color: #333;
 }
 
 .booking-form button {
@@ -296,6 +341,7 @@ body::before {
   font-family: 'Poppins', sans-serif;
   cursor: pointer;
   transition: all 0.3s;
+  margin-top: 8px;
 }
 
 .booking-form button:hover {

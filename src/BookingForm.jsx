@@ -27,6 +27,7 @@ function BookingForm({ onSubmit, services }) {
         placeholder="👤 Ваше имя"
         value={formData.name}
         onChange={handleChange}
+        autoComplete="off"
         required
       />
 
@@ -36,6 +37,7 @@ function BookingForm({ onSubmit, services }) {
         placeholder="📞 Телефон"
         value={formData.phone}
         onChange={handleChange}
+        autoComplete="off"
         required
       />
 
@@ -56,7 +58,7 @@ function BookingForm({ onSubmit, services }) {
       />
 
       <button type="submit">
-        Записаться <i className="fas fa-calendar-check"></i>
+        Записаться ✨
       </button>
     </form>
   )
