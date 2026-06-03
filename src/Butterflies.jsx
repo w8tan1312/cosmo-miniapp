@@ -4,18 +4,15 @@ const Butterflies = () => {
   const [butterflies, setButterflies] = useState([])
 
   useEffect(() => {
-    // Создаём 8 бабочек
     const newButterflies = []
-    const butterflyEmojis = ['🦋', '🦋', '🦋', '🦋', '🦋', '🦋', '🦋', '🦋']
     for (let i = 0; i < 8; i++) {
       newButterflies.push({
         id: i,
         left: Math.random() * 100,
         top: Math.random() * 100,
-        delay: Math.random() * 5,
-        duration: 8 + Math.random() * 7,
-        size: 20 + Math.random() * 15,
-        emoji: butterflyEmojis[i % butterflyEmojis.length]
+        delay: Math.random() * 8,
+        duration: 12 + Math.random() * 8,
+        size: 24 + Math.random() * 12
       })
     }
     setButterflies(newButterflies)
@@ -26,16 +23,32 @@ const Butterflies = () => {
       {butterflies.map(butterfly => (
         <div
           key={butterfly.id}
-          className="butterfly"
+          className="butterfly-wrapper"
           style={{
             left: `${butterfly.left}%`,
             top: `${butterfly.top}%`,
             animationDelay: `${butterfly.delay}s`,
             animationDuration: `${butterfly.duration}s`,
-            fontSize: `${butterfly.size}px`
           }}
         >
-          🦋
+          <div 
+            className="butterfly-real" 
+            style={{
+              '--size': `${butterfly.size}px`
+            }}
+          >
+            <div className="wing-left-real">
+              <div className="wing-upper-left"></div>
+              <div className="wing-lower-left"></div>
+            </div>
+            <div className="wing-right-real">
+              <div className="wing-upper-right"></div>
+              <div className="wing-lower-right"></div>
+            </div>
+            <div className="body-real"></div>
+            <div className="antenna-left"></div>
+            <div className="antenna-right"></div>
+          </div>
         </div>
       ))}
     </div>

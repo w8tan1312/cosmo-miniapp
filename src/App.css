@@ -483,85 +483,129 @@ body::before {
   overflow: hidden;
 }
 
-/* Бабочка */
-.butterfly {
+.butterfly-wrapper {
   position: absolute;
-  width: var(--butterfly-size, 30px);
-  height: calc(var(--butterfly-size, 30px) * 0.8);
   animation: flyAround 15s ease-in-out infinite;
-  filter: drop-shadow(0 0 3px rgba(255, 105, 180, 0.3));
 }
 
-/* Крылья бабочки */
-.butterfly-wing {
+/* Настоящая бабочка */
+.butterfly-real {
+  position: relative;
+  width: var(--size, 30px);
+  height: calc(var(--size, 30px) * 0.7);
+  animation: flutter 0.15s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+/* Крылья */
+.wing-left-real,
+.wing-right-real {
   position: absolute;
+  top: 0;
   width: 45%;
-  height: 70%;
-  top: 15%;
-  animation: flapWings 0.3s ease-in-out infinite alternate;
+  height: 100%;
+  animation: flapWings 0.12s ease-in-out infinite alternate;
   transform-origin: top;
 }
 
-.wing-left {
+.wing-left-real {
   left: 0;
-  transform: skewY(5deg);
 }
 
-.wing-right {
+.wing-right-real {
   right: 0;
-  transform: skewY(-5deg) scaleX(-1);
+  transform: scaleX(-1);
 }
 
-/* Верхняя часть крыла */
-.wing-top {
+/* Верхние крылья */
+.wing-upper-left,
+.wing-upper-right {
   position: absolute;
   width: 100%;
   height: 55%;
   background: linear-gradient(135deg, #ffb6d9, #ff69b4);
   border-radius: 80% 20% 70% 30% / 60% 50% 50% 40%;
-  opacity: 0.7;
-  box-shadow: 0 0 8px rgba(255, 105, 180, 0.4);
+  opacity: 0.75;
+  box-shadow: 0 0 6px rgba(255, 105, 180, 0.4);
 }
 
-/* Нижняя часть крыла */
-.wing-bottom {
+/* Нижние крылья */
+.wing-lower-left,
+.wing-lower-right {
   position: absolute;
   bottom: 0;
   width: 85%;
   height: 40%;
   background: linear-gradient(135deg, #ff99cc, #ff85b3);
   border-radius: 40% 60% 50% 50% / 30% 50% 50% 70%;
-  opacity: 0.6;
+  opacity: 0.65;
   left: 8%;
 }
 
-/* Контейнер для бабочек */
-.butterflies-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-/* Бабочка */
-.butterfly {
+/* Тело бабочки */
+.body-real {
   position: absolute;
-  font-size: 30px;
-  opacity: 0.5;
-  animation: flyAround 12s ease-in-out infinite;
-  filter: drop-shadow(0 0 2px rgba(255,105,180,0.3));
-  transition: opacity 0.3s;
-  color: #ff69b4;
-  text-shadow: 0 0 3px rgba(255,105,180,0.5);
+  width: 14%;
+  height: 60%;
+  background: #d63384;
+  border-radius: 50%;
+  left: 43%;
+  top: 20%;
+  opacity: 0.85;
+  box-shadow: 0 0 4px rgba(0,0,0,0.1);
+  z-index: 2;
 }
 
-.butterfly:hover {
-  opacity: 0.9;
-  filter: drop-shadow(0 0 5px rgba(255,105,180,0.6));
+/* Усики */
+.antenna-left,
+.antenna-right {
+  position: absolute;
+  width: 2px;
+  height: 25%;
+  background: #d63384;
+  top: -15%;
+  border-radius: 2px;
+  transform-origin: bottom;
+}
+
+.antenna-left {
+  left: 40%;
+  transform: rotate(-30deg);
+}
+
+.antenna-right {
+  right: 40%;
+  transform: rotate(30deg);
+}
+
+.antenna-left::before,
+.antenna-right::before {
+  content: '●';
+  position: absolute;
+  top: -5px;
+  left: -3px;
+  font-size: 6px;
+  color: #d63384;
+}
+
+/* Анимация взмаха крыльев */
+@keyframes flapWings {
+  0% {
+    transform: scaleX(1) rotate(0deg);
+  }
+  100% {
+    transform: scaleX(0.2) rotate(8deg);
+  }
+}
+
+/* Анимация порхания всей бабочки */
+@keyframes flutter {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(2deg);
+  }
 }
 
 /* Анимация полёта */
@@ -571,22 +615,19 @@ body::before {
     opacity: 0;
   }
   10% {
-    opacity: 0.5;
+    opacity: 1;
   }
-  20% {
-    transform: translate(15vw, -15vh) rotate(15deg);
+  25% {
+    transform: translate(20vw, -20vh) rotate(15deg);
   }
-  40% {
-    transform: translate(-10vw, -25vh) rotate(-10deg);
+  50% {
+    transform: translate(-15vw, -35vh) rotate(-10deg);
   }
-  60% {
-    transform: translate(20vw, -10vh) rotate(20deg);
-  }
-  80% {
-    transform: translate(-15vw, -20vh) rotate(-15deg);
+  75% {
+    transform: translate(25vw, -15vh) rotate(12deg);
   }
   90% {
-    opacity: 0.5;
+    opacity: 1;
   }
   100% {
     transform: translate(0, 0) rotate(0deg);
@@ -594,26 +635,25 @@ body::before {
   }
 }
 
-/* Вариант 2 - более плавный полёт */
 @keyframes flyAround2 {
   0% {
     transform: translate(0, 0) scale(1);
     opacity: 0;
   }
   15% {
-    opacity: 0.6;
+    opacity: 1;
   }
   30% {
-    transform: translate(25vw, -20vh) scale(1.1) rotate(10deg);
+    transform: translate(-20vw, -25vh) scale(1.1) rotate(-12deg);
   }
-  50% {
-    transform: translate(-20vw, -35vh) scale(0.9) rotate(-15deg);
+  55% {
+    transform: translate(18vw, -30vh) scale(0.9) rotate(8deg);
   }
-  70% {
-    transform: translate(15vw, -15vh) scale(1.05) rotate(8deg);
+  75% {
+    transform: translate(-10vw, -15vh) scale(1.05) rotate(-5deg);
   }
-  85% {
-    opacity: 0.6;
+  90% {
+    opacity: 1;
   }
   100% {
     transform: translate(0, 0) scale(1);
@@ -621,32 +661,18 @@ body::before {
   }
 }
 
-/* Разные анимации для разных бабочек */
-.butterfly:nth-child(odd) {
+/* Разные анимации полёта */
+.butterfly-wrapper:nth-child(odd) .butterfly-real {
   animation-name: flyAround;
 }
 
-.butterfly:nth-child(even) {
+.butterfly-wrapper:nth-child(even) .butterfly-real {
   animation-name: flyAround2;
 }
 
-/* Эффект порхания для бабочек-эмодзи */
-@keyframes flutter {
-  0%, 100% {
-    transform: scale(1) rotate(0deg);
-  }
-  25% {
-    transform: scale(1.08) rotate(5deg);
-  }
-  75% {
-    transform: scale(0.92) rotate(-5deg);
-  }
-}
-
-.butterfly {
-  animation: flyAround 12s ease-in-out infinite, flutter 0.3s ease-in-out infinite;
-}
-
-.butterfly:nth-child(even) {
-  animation: flyAround2 12s ease-in-out infinite, flutter 0.25s ease-in-out infinite;
+/* Эффект при наведении */
+.butterfly-wrapper:hover .wing-upper-left,
+.butterfly-wrapper:hover .wing-upper-right {
+  opacity: 0.95;
+  filter: drop-shadow(0 0 4px rgba(255,105,180,0.6));
 }
