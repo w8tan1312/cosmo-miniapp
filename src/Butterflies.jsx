@@ -10,8 +10,8 @@ const Butterflies = () => {
         id: i,
         left: Math.random() * 100,
         top: Math.random() * 100,
-        delay: Math.random() * 5,
-        duration: 18 + Math.random() * 10,
+        delay: Math.random() * 8,
+        duration: 25 + Math.random() * 15,
         size: 35 + Math.random() * 20
       })
     }
