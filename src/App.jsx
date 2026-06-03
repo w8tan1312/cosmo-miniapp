@@ -1,40 +1,53 @@
 import React, { useState, useEffect } from 'react'
-import Services from './Services'
+import Categories from './Categories'
+import CategoryServices from './CategoryServices'
 import BookingForm from './BookingForm'
 import Success from './Success'
 import './App.css'
 
 function App() {
-  const [step, setStep] = useState(1)
-  const [selectedServices, setSelectedServices] = useState([])
-  const [bookingData, setBookingData] = useState(null)
-  const [initData, setInitData] = useState(null)
+  const [step, setStep] = useState('categories')
+  const [selectedCategory, setSelectedCategory] = useState(null)
+  const [cart, setCart] = useState([])
 
   useEffect(() => {
     if (window.Telegram?.WebApp) {
-      const webApp = window.Telegram.WebApp
-      webApp.ready()
-      webApp.expand()
-      setInitData(webApp.initDataUnsafe)
+      window.Telegram.WebApp.ready()
+      window.Telegram.WebApp.expand()
     }
   }, [])
 
-  const handleServicesNext = (services) => {
-    setSelectedServices(services)
-    setStep(2)
+  const handleSelectCategory = (category) => {
+    setSelectedCategory(category)
+    setStep('services')
   }
 
-  const handleBookingSubmit = (data) => {
-    setBookingData(data)
-    setStep(3)
-    sendNotifications(data, selectedServices)
+  const handleAddToCart = (services) => {
+    const newCart = [...cart]
+    services.forEach(service => {
+      if (!newCart.find(s => s.id === service.id)) {
+        newCart.push(service)
+      }
+    })
+    setCart(newCart)
+    setStep('booking')
+  }
+
+  const handleBackToCategories = () => {
+    setStep('categories')
+    setSelectedCategory(null)
+  }
+
+  const handleBookingSubmit = async (bookingData) => {
+    setStep('success')
+    await sendNotifications(bookingData, cart)
   }
 
   const sendNotifications = async (booking, services) => {
-    const total = services.reduce((sum, s) => sum + s.price, 0);
+    const total = services.reduce((sum, s) => sum + s.price, 0)
     
     try {
-      const response = await fetch('/api/send-notification', {
+      await fetch('/api/send-notification', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -45,21 +58,43 @@ function App() {
           services: services,
           total: total
         })
-      });
-      
-      if (response.ok) {
-        console.log('Уведомления отправлены');
-      }
+      })
     } catch (error) {
-      console.error('Ошибка:', error);
+      console.error('Ошибка:', error)
     }
-  };
+  }
+
+  const totalCart = cart.reduce((sum, s) => sum + s.price, 0)
 
   return (
     <div className="app">
-      {step === 1 && <Services onNext={handleServicesNext} />}
-      {step === 2 && <BookingForm onSubmit={handleBookingSubmit} services={selectedServices} />}
-      {step === 3 && <Success />}
+      {step === 'categories' && (
+        <Categories onSelectCategory={handleSelectCategory} />
+      )}
+      
+      {step === 'services' && selectedCategory && (
+        <CategoryServices 
+          category={selectedCategory}
+          onAddToCart={handleAddToCart}
+          onBack={handleBackToCategories}
+          existingSelected={cart}
+        />
+      )}
+      
+      {step === 'booking' && (
+        <>
+          <BookingForm onSubmit={handleBookingSubmit} services={cart} />
+          <div className="cart-preview">
+            <h4>Ваши услуги ({cart.length})</h4>
+            {cart.map(s => (
+              <div key={s.id}>{s.name} - {s.price}₽</div>
+            ))}
+            <strong>Итого: {totalCart} ₽</strong>
+          </div>
+        </>
+      )}
+      
+      {step === 'success' && <Success />}
     </div>
   )
 }

@@ -17,21 +17,14 @@ function BookingForm({ onSubmit, services }) {
     onSubmit(formData)
   }
 
-  const serviceNames = services.map(s => s.name).join(', ')
-  const total = services.reduce((sum, s) => sum + s.price, 0)
-
   return (
     <form className="booking-form" onSubmit={handleSubmit}>
       <h1>Заполните данные</h1>
-      <div className="services-summary">
-        <strong>Выбранные услуги:</strong> {serviceNames}
-        <div><strong>Итого:</strong> {total} ₽</div>
-      </div>
-
+      
       <input
         type="text"
         name="name"
-        placeholder="Ваше имя"
+        placeholder="👤 Ваше имя"
         value={formData.name}
         onChange={handleChange}
         required
@@ -40,7 +33,7 @@ function BookingForm({ onSubmit, services }) {
       <input
         type="tel"
         name="phone"
-        placeholder="Телефон"
+        placeholder="📞 Телефон"
         value={formData.phone}
         onChange={handleChange}
         required
@@ -62,7 +55,9 @@ function BookingForm({ onSubmit, services }) {
         required
       />
 
-      <button type="submit">Записаться</button>
+      <button type="submit">
+        Записаться <i className="fas fa-calendar-check"></i>
+      </button>
     </form>
   )
 }
