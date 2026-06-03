@@ -5,14 +5,14 @@ const Butterflies = () => {
 
   useEffect(() => {
     const newButterflies = []
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 6; i++) {
       newButterflies.push({
         id: i,
         left: Math.random() * 100,
         top: Math.random() * 100,
-        delay: Math.random() * 8,
-        duration: 12 + Math.random() * 8,
-        size: 24 + Math.random() * 12
+        delay: Math.random() * 5,
+        duration: 18 + Math.random() * 10,
+        size: 35 + Math.random() * 20
       })
     }
     setButterflies(newButterflies)

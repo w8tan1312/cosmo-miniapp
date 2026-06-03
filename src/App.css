@@ -84,7 +84,6 @@ body::before {
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(255, 105, 180, 0.25);
-  /* Эффект при нажатии */
   transform: scale(1);
 }
 
@@ -93,66 +92,6 @@ body::before {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
   background: rgba(255, 255, 255, 0.95);
   border-color: rgba(255, 105, 180, 0.5);
-}
-
-/* Эффект при нажатии (клике) */
-.category-card:active {
-  transform: scale(0.96);
-  transition: transform 0.05s;
-}
-
-/* Иконки при нажатии */
-.category-card:active i {
-  transform: scale(0.92);
-}
-
-/* Фоновый эмодзи */
-.bg-emoji {
-  position: absolute;
-  bottom: -15px;
-  right: -15px;
-  font-size: 70px;
-  opacity: 0.12;
-  pointer-events: none;
-  transform: rotate(-8deg);
-  transition: transform 0.3s;
-}
-
-.category-card:hover .bg-emoji {
-  transform: rotate(-3deg) scale(1.05);
-  opacity: 0.18;
-}
-
-/* Иконки */
-/* Карточка категории */
-.category-card i {
-  font-size: 32px;
-  margin-bottom: 12px;
-  display: inline-block;
-  background: rgba(255, 255, 255, 0.7);
-  padding: 10px;
-  border-radius: 50%;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s;
-  color: #ff69b4 !important;
-  text-shadow: none;
-  width: 52px;
-  height: 52px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.category-card h3 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  color: #d63384;
-  margin-top: 10px;
-  letter-spacing: 0.3px;
-  word-break: break-word;
-  max-width: 100%;
-  line-height: 1.3;
 }
 
 /* Эффект при нажатии */
@@ -185,6 +124,60 @@ body::before {
   height: 300px;
   opacity: 0;
   transition: width 0.2s, height 0.2s, opacity 0.2s;
+}
+
+/* Фоновый эмодзи */
+.bg-emoji {
+  position: absolute;
+  bottom: -15px;
+  right: -15px;
+  font-size: 70px;
+  opacity: 0.12;
+  pointer-events: none;
+  transform: rotate(-8deg);
+  transition: transform 0.3s;
+}
+
+.category-card:hover .bg-emoji {
+  transform: rotate(-3deg) scale(1.05);
+  opacity: 0.18;
+}
+
+/* Иконки */
+.category-card i {
+  font-size: 32px;
+  margin-bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s;
+  color: #ff69b4 !important;
+  text-shadow: none;
+  width: 52px;
+  height: 52px;
+}
+
+.category-card:hover i {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 6px 15px rgba(255, 105, 180, 0.2);
+}
+
+/* Название категории */
+.category-card h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #d63384;
+  margin-top: 10px;
+  letter-spacing: 0.3px;
+  word-break: break-word;
+  max-width: 100%;
+  line-height: 1.3;
 }
 
 /* Список услуг */
@@ -282,7 +275,6 @@ body::before {
   box-shadow: 0 8px 20px rgba(255, 105, 180, 0.35);
 }
 
-/* Эффект при нажатии на кнопку */
 .cart-footer button:active {
   transform: scale(0.97);
   transition: transform 0.05s;
@@ -312,7 +304,7 @@ body::before {
   transform: translateX(-3px);
 }
 
-/* ФОРМА - ИСПРАВЛЕННЫЕ СТИЛИ */
+/* ФОРМА */
 .booking-form {
   display: flex;
   flex-direction: column;
@@ -351,7 +343,6 @@ body::before {
   background: white;
 }
 
-/* Стили для полей даты и времени */
 .booking-form input[type="date"],
 .booking-form input[type="time"] {
   color: #333;
@@ -371,7 +362,6 @@ body::before {
   opacity: 1;
 }
 
-/* Убираем авто-стили браузера */
 .booking-form input:-webkit-autofill,
 .booking-form input:-webkit-autofill:hover,
 .booking-form input:-webkit-autofill:focus,
@@ -379,13 +369,6 @@ body::before {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
   box-shadow: 0 0 0 30px white inset !important;
   -webkit-text-fill-color: #333 !important;
-}
-
-/* Цвет текста при вводе */
-.booking-form input:focus,
-.booking-form input:active,
-.booking-form input:not(:placeholder-shown) {
-  color: #333;
 }
 
 .booking-form button {
@@ -456,7 +439,6 @@ body::before {
   animation: fadeIn 0.4s ease-out;
 }
 
-/* Категория услуг */
 .category-services h1 {
   font-family: 'Playfair Display', serif;
   font-size: 26px;
@@ -471,7 +453,7 @@ body::before {
   font-size: 13px;
 }
 
-/* Контейнер для бабочек */
+/* ========== БАБОЧКИ ========== */
 .butterflies-container {
   position: fixed;
   top: 0;
@@ -485,26 +467,24 @@ body::before {
 
 .butterfly-wrapper {
   position: absolute;
-  animation: flyAround 15s ease-in-out infinite;
+  animation: flyAround 20s ease-in-out infinite;
 }
 
-/* Настоящая бабочка */
 .butterfly-real {
   position: relative;
-  width: var(--size, 30px);
-  height: calc(var(--size, 30px) * 0.7);
-  animation: flutter 0.15s ease-in-out infinite;
+  width: var(--size, 35px);
+  height: calc(var(--size, 35px) * 0.7);
+  animation: flutter 0.4s ease-in-out infinite;
   transform-origin: center center;
 }
 
-/* Крылья */
 .wing-left-real,
 .wing-right-real {
   position: absolute;
   top: 0;
   width: 45%;
   height: 100%;
-  animation: flapWings 0.12s ease-in-out infinite alternate;
+  animation: flapWings 0.25s ease-in-out infinite alternate;
   transform-origin: top;
 }
 
@@ -517,7 +497,6 @@ body::before {
   transform: scaleX(-1);
 }
 
-/* Верхние крылья */
 .wing-upper-left,
 .wing-upper-right {
   position: absolute;
@@ -525,11 +504,10 @@ body::before {
   height: 55%;
   background: linear-gradient(135deg, #ffb6d9, #ff69b4);
   border-radius: 80% 20% 70% 30% / 60% 50% 50% 40%;
-  opacity: 0.75;
-  box-shadow: 0 0 6px rgba(255, 105, 180, 0.4);
+  opacity: 0.9;
+  box-shadow: 0 0 8px rgba(255, 105, 180, 0.4);
 }
 
-/* Нижние крылья */
 .wing-lower-left,
 .wing-lower-right {
   position: absolute;
@@ -538,11 +516,10 @@ body::before {
   height: 40%;
   background: linear-gradient(135deg, #ff99cc, #ff85b3);
   border-radius: 40% 60% 50% 50% / 30% 50% 50% 70%;
-  opacity: 0.65;
+  opacity: 0.8;
   left: 8%;
 }
 
-/* Тело бабочки */
 .body-real {
   position: absolute;
   width: 14%;
@@ -556,7 +533,6 @@ body::before {
   z-index: 2;
 }
 
-/* Усики */
 .antenna-left,
 .antenna-right {
   position: absolute;
@@ -588,27 +564,24 @@ body::before {
   color: #d63384;
 }
 
-/* Анимация взмаха крыльев */
 @keyframes flapWings {
   0% {
     transform: scaleX(1) rotate(0deg);
   }
   100% {
-    transform: scaleX(0.2) rotate(8deg);
+    transform: scaleX(0.3) rotate(6deg);
   }
 }
 
-/* Анимация порхания всей бабочки */
 @keyframes flutter {
   0%, 100% {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(-3px) rotate(2deg);
+    transform: translateY(-2px) rotate(1deg);
   }
 }
 
-/* Анимация полёта */
 @keyframes flyAround {
   0% {
     transform: translate(0, 0) rotate(0deg);
@@ -618,13 +591,13 @@ body::before {
     opacity: 1;
   }
   25% {
-    transform: translate(20vw, -20vh) rotate(15deg);
+    transform: translate(15vw, -10vh) rotate(8deg);
   }
   50% {
-    transform: translate(-15vw, -35vh) rotate(-10deg);
+    transform: translate(-10vw, -20vh) rotate(-6deg);
   }
   75% {
-    transform: translate(25vw, -15vh) rotate(12deg);
+    transform: translate(18vw, -8vh) rotate(6deg);
   }
   90% {
     opacity: 1;
@@ -644,13 +617,13 @@ body::before {
     opacity: 1;
   }
   30% {
-    transform: translate(-20vw, -25vh) scale(1.1) rotate(-12deg);
+    transform: translate(-15vw, -15vh) scale(1.05) rotate(-8deg);
   }
   55% {
-    transform: translate(18vw, -30vh) scale(0.9) rotate(8deg);
+    transform: translate(12vw, -20vh) scale(0.95) rotate(5deg);
   }
   75% {
-    transform: translate(-10vw, -15vh) scale(1.05) rotate(-5deg);
+    transform: translate(-8vw, -10vh) scale(1.02) rotate(-4deg);
   }
   90% {
     opacity: 1;
@@ -661,7 +634,6 @@ body::before {
   }
 }
 
-/* Разные анимации полёта */
 .butterfly-wrapper:nth-child(odd) .butterfly-real {
   animation-name: flyAround;
 }
@@ -670,7 +642,6 @@ body::before {
   animation-name: flyAround2;
 }
 
-/* Эффект при наведении */
 .butterfly-wrapper:hover .wing-upper-left,
 .butterfly-wrapper:hover .wing-upper-right {
   opacity: 0.95;
