@@ -4,16 +4,16 @@ const Butterflies = () => {
   const [butterflies, setButterflies] = useState([])
 
   useEffect(() => {
-    // Создаём 8 бабочек
+    // Создаём бабочек
     const newButterflies = []
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 6; i++) {
       newButterflies.push({
         id: i,
         left: Math.random() * 100,
         top: Math.random() * 100,
-        delay: Math.random() * 5,
-        duration: 8 + Math.random() * 7,
-        size: 20 + Math.random() * 15
+        delay: Math.random() * 8,
+        duration: 10 + Math.random() * 10,
+        size: 22 + Math.random() * 15
       })
     }
     setButterflies(newButterflies)
@@ -30,10 +30,18 @@ const Butterflies = () => {
             top: `${butterfly.top}%`,
             animationDelay: `${butterfly.delay}s`,
             animationDuration: `${butterfly.duration}s`,
-            fontSize: `${butterfly.size}px`
+            '--butterfly-size': `${butterfly.size}px`
           }}
         >
-          🦋
+          <div className="butterfly-wing wing-left">
+            <div className="wing-top"></div>
+            <div className="wing-bottom"></div>
+          </div>
+          <div className="butterfly-wing wing-right">
+            <div className="wing-top"></div>
+            <div className="wing-bottom"></div>
+          </div>
+          <div className="butterfly-body"></div>
         </div>
       ))}
     </div>
