@@ -1,0 +1,31 @@
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  const { name, phone, date, time, services, total } = req.body;
+
+  // Отправка в Telegram админу
+  const TELEGRAM_BOT_TOKEN = '8989804078:AAHzkAfmCLyWK6Hg9xr-tsjXt2EdjONKVGE'; // Замените на ваш токен
+  const TELEGRAM_CHAT_ID = '405918353'; // Замените на ваш ID (можно получить у @userinfobot)
+
+  const servicesText = services.map(s => `${s.name} - ${s.price}₽`).join('\n');
+  const message = `📅 Новая запись!\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n📆 Дата: ${date}\n⏰ Время: ${time}\n\n💅 Услуги:\n${servicesText}\n\n💰 Итого: ${total}₽`;
+
+  try {
+    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: TELEGRAM_CHAT_ID,
+        text: message,
+        parse_mode: 'HTML'
+      })
+    });
+
+    res.status(200).json({ success: true });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Failed to send notification' });
+  }
+}
