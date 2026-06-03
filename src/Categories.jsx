@@ -64,24 +64,13 @@ const categories = [
       { id: 53, name: 'Атравматическая чистка', price: 4500, duration: '55 мин' },
       { id: 54, name: 'Комбинированная чистка', price: 5000, duration: '70 мин' }
     ]
-  },
-  { 
-    id: 6, 
-    name: 'Ароматерапия', 
-    icon: 'fa-flower', 
-    color: '#ffb6d9',
-    emoji: '🌺',
-    services: [
-      { id: 61, name: 'Ароматерапия', price: 1500, duration: '30 мин' },
-      { id: 62, name: 'Фитокомплексы', price: 2000, duration: '20 мин' }
-    ]
   }
 ]
 
 function Categories({ onSelectCategory }) {
   return (
     <div className="categories">
-      <h1>Выберите категорию</h1>
+      <h1>Прайс-лист</h1>
       <div className="categories-grid">
         {categories.map(cat => (
           <div 
