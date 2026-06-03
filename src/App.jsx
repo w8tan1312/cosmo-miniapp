@@ -3,7 +3,7 @@ import Categories from './Categories'
 import CategoryServices from './CategoryServices'
 import BookingForm from './BookingForm'
 import Success from './Success'
-import Butterflies from './Butterflies'
+import Flowers from './Flowers'
 import './App.css'
 
 function App() {
@@ -69,7 +69,7 @@ function App() {
 
   return (
     <div className="app">
-      <Butterflies />
+      <Flowers />
       {step === 'categories' && (
         <Categories onSelectCategory={handleSelectCategory} />
       )}

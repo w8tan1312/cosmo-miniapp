@@ -41,7 +41,7 @@ body::before {
   z-index: 1;
 }
 
-/* Заголовок с красивым шрифтом */
+/* Заголовок */
 .categories h1 {
   font-family: 'Playfair Display', serif;
   font-size: 32px;
@@ -94,7 +94,6 @@ body::before {
   border-color: rgba(255, 105, 180, 0.5);
 }
 
-/* Эффект при нажатии */
 .category-card:active {
   transform: scale(0.96);
   transition: transform 0.05s;
@@ -104,7 +103,6 @@ body::before {
   transform: scale(0.92);
 }
 
-/* Эффект волны */
 .category-card::after {
   content: '';
   position: absolute;
@@ -126,7 +124,6 @@ body::before {
   transition: width 0.2s, height 0.2s, opacity 0.2s;
 }
 
-/* Фоновый эмодзи */
 .bg-emoji {
   position: absolute;
   bottom: -15px;
@@ -143,7 +140,6 @@ body::before {
   opacity: 0.18;
 }
 
-/* Иконки */
 .category-card i {
   font-size: 32px;
   margin-bottom: 12px;
@@ -167,7 +163,6 @@ body::before {
   box-shadow: 0 6px 15px rgba(255, 105, 180, 0.2);
 }
 
-/* Название категории */
 .category-card h3 {
   font-family: 'Poppins', sans-serif;
   font-size: 13px;
@@ -280,7 +275,6 @@ body::before {
   transition: transform 0.05s;
 }
 
-/* Кнопка назад */
 .back-btn {
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid #ff69b4;
@@ -304,7 +298,7 @@ body::before {
   transform: translateX(-3px);
 }
 
-/* ФОРМА */
+/* Форма */
 .booking-form {
   display: flex;
   flex-direction: column;
@@ -390,7 +384,6 @@ body::before {
   box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
 }
 
-/* Страница успеха */
 .success {
   text-align: center;
   padding: 60px 20px;
@@ -423,7 +416,6 @@ body::before {
   font-weight: 500;
 }
 
-/* Анимации */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -453,8 +445,8 @@ body::before {
   font-size: 13px;
 }
 
-/* ========== БАБОЧКИ - МЕДЛЕННЫЕ И РАНДОМНЫЕ ========== */
-.butterflies-container {
+/* ========== ЛЕТАЮЩИЕ ЦВЕТЫ ========== */
+.flowers-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -465,142 +457,39 @@ body::before {
   overflow: hidden;
 }
 
-.butterfly-wrapper {
+.flower {
   position: absolute;
-  animation: flyAround 30s ease-in-out infinite;
+  animation: floatFlower 25s ease-in-out infinite;
+  filter: drop-shadow(0 0 2px rgba(255,105,180,0.2));
+  transition: all 0.3s;
+  color: #ff85b3;
+  text-shadow: 0 0 2px rgba(255,105,180,0.2);
 }
 
-.butterfly-real {
-  position: relative;
-  width: var(--size, 35px);
-  height: calc(var(--size, 35px) * 0.7);
-  animation: flutter 0.6s ease-in-out infinite;
-  transform-origin: center center;
+.flower:hover {
+  opacity: 0.6 !important;
+  filter: drop-shadow(0 0 6px rgba(255,105,180,0.4));
 }
 
-.wing-left-real,
-.wing-right-real {
-  position: absolute;
-  top: 0;
-  width: 45%;
-  height: 100%;
-  animation: flapWings 0.35s ease-in-out infinite alternate;
-  transform-origin: top;
-}
-
-.wing-left-real {
-  left: 0;
-}
-
-.wing-right-real {
-  right: 0;
-  transform: scaleX(-1);
-}
-
-.wing-upper-left,
-.wing-upper-right {
-  position: absolute;
-  width: 100%;
-  height: 55%;
-  background: linear-gradient(135deg, #ffb6d9, #ff69b4);
-  border-radius: 80% 20% 70% 30% / 60% 50% 50% 40%;
-  opacity: 0.85;
-  box-shadow: 0 0 6px rgba(255, 105, 180, 0.3);
-}
-
-.wing-lower-left,
-.wing-lower-right {
-  position: absolute;
-  bottom: 0;
-  width: 85%;
-  height: 40%;
-  background: linear-gradient(135deg, #ff99cc, #ff85b3);
-  border-radius: 40% 60% 50% 50% / 30% 50% 50% 70%;
-  opacity: 0.75;
-  left: 8%;
-}
-
-.body-real {
-  position: absolute;
-  width: 14%;
-  height: 60%;
-  background: #d63384;
-  border-radius: 50%;
-  left: 43%;
-  top: 20%;
-  opacity: 0.85;
-  box-shadow: 0 0 4px rgba(0,0,0,0.1);
-  z-index: 2;
-}
-
-.antenna-left,
-.antenna-right {
-  position: absolute;
-  width: 2px;
-  height: 25%;
-  background: #d63384;
-  top: -15%;
-  border-radius: 2px;
-  transform-origin: bottom;
-}
-
-.antenna-left {
-  left: 40%;
-  transform: rotate(-30deg);
-}
-
-.antenna-right {
-  right: 40%;
-  transform: rotate(30deg);
-}
-
-.antenna-left::before,
-.antenna-right::before {
-  content: '●';
-  position: absolute;
-  top: -5px;
-  left: -3px;
-  font-size: 6px;
-  color: #d63384;
-}
-
-@keyframes flapWings {
-  0% {
-    transform: scaleX(1) rotate(0deg);
-  }
-  100% {
-    transform: scaleX(0.4) rotate(5deg);
-  }
-}
-
-@keyframes flutter {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-1px) rotate(1deg);
-  }
-}
-
-@keyframes flyAround {
+@keyframes floatFlower {
   0% {
     transform: translate(0, 0) rotate(0deg);
     opacity: 0;
   }
   10% {
-    opacity: 0.7;
+    opacity: 0.35;
   }
-  30% {
-    transform: translate(12vw, -8vh) rotate(6deg);
+  25% {
+    transform: translate(15vw, -10vh) rotate(12deg);
   }
   50% {
-    transform: translate(-8vw, -18vh) rotate(-5deg);
+    transform: translate(-10vw, -22vh) rotate(-8deg);
   }
-  70% {
-    transform: translate(15vw, -12vh) rotate(4deg);
+  75% {
+    transform: translate(12vw, -12vh) rotate(6deg);
   }
   90% {
-    opacity: 0.7;
+    opacity: 0.35;
   }
   100% {
     transform: translate(0, 0) rotate(0deg);
@@ -608,42 +497,36 @@ body::before {
   }
 }
 
-@keyframes flyAround2 {
+@keyframes floatFlower2 {
   0% {
-    transform: translate(0, 0) scale(1);
+    transform: translate(0, 0) scale(1) rotate(0deg);
     opacity: 0;
   }
   15% {
-    opacity: 0.7;
+    opacity: 0.35;
   }
-  35% {
-    transform: translate(-12vw, -12vh) scale(1.03) rotate(-6deg);
+  30% {
+    transform: translate(-12vw, -15vh) scale(1.08) rotate(-10deg);
   }
   55% {
-    transform: translate(10vw, -22vh) scale(0.97) rotate(4deg);
+    transform: translate(14vw, -25vh) scale(0.92) rotate(8deg);
   }
   75% {
-    transform: translate(-8vw, -8vh) scale(1.02) rotate(-3deg);
+    transform: translate(-8vw, -10vh) scale(1.03) rotate(-5deg);
   }
   90% {
-    opacity: 0.7;
+    opacity: 0.35;
   }
   100% {
-    transform: translate(0, 0) scale(1);
+    transform: translate(0, 0) scale(1) rotate(0deg);
     opacity: 0;
   }
 }
 
-.butterfly-wrapper:nth-child(odd) {
-  animation-name: flyAround;
+.flower:nth-child(odd) {
+  animation-name: floatFlower;
 }
 
-.butterfly-wrapper:nth-child(even) {
-  animation-name: flyAround2;
-}
-
-.butterfly-wrapper:hover .wing-upper-left,
-.butterfly-wrapper:hover .wing-upper-right {
-  opacity: 0.95;
-  filter: drop-shadow(0 0 4px rgba(255,105,180,0.5));
+.flower:nth-child(even) {
+  animation-name: floatFlower2;
 }
