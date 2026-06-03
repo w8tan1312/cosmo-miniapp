@@ -1,83 +1,294 @@
-/* Фоновые узоры для категорий */
-.category-card {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: linear-gradient(135deg, #fce4ec 0%, #ffe0f0 50%, #f8bbd0 100%);
+  min-height: 100vh;
   position: relative;
-  overflow: hidden;
-  background: white;
+}
+
+/* Фоновые цветы (полупрозрачные) */
+body::before {
+  content: '🌸🌷🌺🌼🌻🌹🥀🌿💐🌸🌷🌺';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 120px;
+  white-space: pre-wrap;
+  opacity: 0.08;
+  pointer-events: none;
+  text-align: center;
+  line-height: 1.5;
+  z-index: 0;
+}
+
+.app {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 1;
+}
+
+/* Заголовок */
+.categories h1 {
+  font-size: 28px;
+  margin-bottom: 24px;
+  text-align: center;
+  color: #d63384;
+  font-weight: 600;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Сетка категорий */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+/* Карточка категории */
+.category-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(5px);
   border-radius: 20px;
-  padding: 24px 16px;
+  padding: 20px 12px;
   text-align: center;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 105, 180, 0.3);
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(255, 105, 180, 0.6);
+}
+
+/* Фоновый эмодзи за карточкой */
+.bg-emoji {
+  position: absolute;
+  bottom: -15px;
+  right: -15px;
+  font-size: 70px;
+  opacity: 0.15;
+  pointer-events: none;
+  transform: rotate(-10deg);
+  transition: transform 0.3s;
+}
+
+.category-card:hover .bg-emoji {
+  transform: rotate(-5deg) scale(1.05);
+  opacity: 0.2;
+}
+
+/* Иконки (нежно-розовые, полупрозрачные, с контуром) */
+.category-card i {
+  font-size: 36px;
+  margin-bottom: 12px;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: all 0.3s;
-  min-height: 140px;
+  color: #ff69b4 !important;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.category-card:hover i {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.2);
+}
+
+/* Название категории */
+.category-card h3 {
+  font-size: 16px;
+  color: #d63384;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+/* Список услуг */
+.services-list {
   display: flex;
   flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.service-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(5px);
+  border-radius: 15px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 105, 180, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-/* Цветочный фон для каждой категории */
-.category-card:nth-child(1)::before {
-  content: '🌸';
-  position: absolute;
-  bottom: -20px;
-  right: -20px;
-  font-size: 100px;
-  opacity: 0.15;
-  pointer-events: none;
+.service-card.selected {
+  background: rgba(255, 220, 240, 0.95);
+  border-color: #ff69b4;
+  transform: scale(1.02);
 }
 
-.category-card:nth-child(2)::before {
-  content: '💆‍♀️';
-  position: absolute;
-  bottom: -20px;
-  right: -20px;
-  font-size: 100px;
-  opacity: 0.15;
-  pointer-events: none;
+.service-info h3 {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 4px;
 }
 
-.category-card:nth-child(3)::before {
-  content: '💉';
-  position: absolute;
-  bottom: -20px;
-  right: -20px;
-  font-size: 100px;
-  opacity: 0.15;
-  pointer-events: none;
+.service-info p {
+  font-size: 12px;
+  color: #999;
 }
 
-.category-card:nth-child(4)::before {
-  content: '🧘‍♀️';
-  position: absolute;
-  bottom: -20px;
-  right: -20px;
-  font-size: 100px;
-  opacity: 0.15;
-  pointer-events: none;
+.service-price {
+  font-weight: bold;
+  color: #d63384;
+  font-size: 16px;
 }
 
-.category-card:nth-child(5)::before {
-  content: '💇‍♀️';
-  position: absolute;
-  bottom: -20px;
-  right: -20px;
-  font-size: 100px;
-  opacity: 0.15;
-  pointer-events: none;
+/* Корзина */
+.cart-footer {
+  position: sticky;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 16px 20px;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  border-top: 1px solid rgba(255, 105, 180, 0.3);
 }
 
-.category-card:nth-child(6)::before {
-  content: '🌺';
-  position: absolute;
-  bottom: -20px;
-  right: -20px;
-  font-size: 100px;
-  opacity: 0.15;
-  pointer-events: none;
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-weight: 500;
+  color: #d63384;
 }
 
-/* Анимация при наведении */
-.category-card:hover::before {
-  transform: scale(1.1);
-  transition: transform 0.3s;
+.cart-footer button {
+  width: 100%;
+  background: linear-gradient(135deg, #ff69b4, #ff99cc);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.cart-footer button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+}
+
+/* Кнопка назад */
+.back-btn {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ff69b4;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #d63384;
+  cursor: pointer;
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s;
+}
+
+.back-btn:hover {
+  background: #ff69b4;
+  color: white;
+}
+
+/* Форма */
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.booking-form input {
+  padding: 14px;
+  border: 1px solid rgba(255, 105, 180, 0.3);
+  border-radius: 12px;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s;
+}
+
+.booking-form input:focus {
+  outline: none;
+  border-color: #ff69b4;
+  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.2);
+}
+
+.booking-form button {
+  background: linear-gradient(135deg, #ff69b4, #ff99cc);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Страница успеха */
+.success {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.success-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+}
+
+.success h1 {
+  color: #d63384;
+  margin-bottom: 12px;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.categories, .category-services, .booking-form {
+  animation: fadeIn 0.4s ease-out;
 }
