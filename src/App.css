@@ -84,6 +84,8 @@ body::before {
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(255, 105, 180, 0.25);
+  /* Эффект при нажатии */
+  transform: scale(1);
 }
 
 .category-card:hover {
@@ -91,6 +93,17 @@ body::before {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
   background: rgba(255, 255, 255, 0.95);
   border-color: rgba(255, 105, 180, 0.5);
+}
+
+/* Эффект при нажатии (клике) */
+.category-card:active {
+  transform: scale(0.96);
+  transition: transform 0.05s;
+}
+
+/* Иконки при нажатии */
+.category-card:active i {
+  transform: scale(0.92);
 }
 
 /* Фоновый эмодзи */
@@ -111,33 +124,59 @@ body::before {
 }
 
 /* Иконки */
-.category-card i {
-  font-size: 38px;
-  margin-bottom: 14px;
-  display: inline-block;
-  background: rgba(255, 255, 255, 0.6);
-  padding: 12px;
-  border-radius: 50%;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s;
-  color: #ff69b4 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-}
-
-.category-card:hover i {
-  transform: scale(1.05);
+/* Карточка категории */
+.category-card {
   background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 6px 15px rgba(255, 105, 180, 0.2);
+  backdrop-filter: blur(5px);
+  border-radius: 24px;
+  padding: 22px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 105, 180, 0.25);
+  transform: scale(1);
 }
 
-/* Название категории */
-.category-card h3 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  color: #d63384;
-  margin-top: 10px;
-  letter-spacing: 0.3px;
+.category-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(255, 105, 180, 0.5);
+}
+
+/* Эффект при нажатии */
+.category-card:active {
+  transform: scale(0.96);
+  transition: transform 0.05s;
+}
+
+.category-card:active i {
+  transform: scale(0.92);
+}
+
+/* Эффект волны */
+.category-card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 105, 180, 0.4);
+  transform: translate(-50%, -50%);
+  transition: width 0.4s, height 0.4s;
+  pointer-events: none;
+}
+
+.category-card:active::after {
+  width: 300px;
+  height: 300px;
+  opacity: 0;
+  transition: width 0.2s, height 0.2s, opacity 0.2s;
 }
 
 /* Список услуг */
@@ -160,6 +199,11 @@ body::before {
   transition: all 0.3s;
   border: 1px solid rgba(255, 105, 180, 0.2);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.service-card:active {
+  transform: scale(0.98);
+  transition: transform 0.05s;
 }
 
 .service-card.selected {
@@ -228,6 +272,12 @@ body::before {
 .cart-footer button:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(255, 105, 180, 0.35);
+}
+
+/* Эффект при нажатии на кнопку */
+.cart-footer button:active {
+  transform: scale(0.97);
+  transition: transform 0.05s;
 }
 
 /* Кнопка назад */
@@ -411,4 +461,97 @@ body::before {
   color: #999;
   margin-bottom: 20px;
   font-size: 13px;
+}
+
+/* Контейнер для бабочек */
+.butterflies-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Анимация бабочки */
+.butterfly {
+  position: absolute;
+  font-size: 30px;
+  opacity: 0.6;
+  animation: flyAround 12s ease-in-out infinite;
+  filter: drop-shadow(0 0 2px rgba(255,105,180,0.3));
+  transition: opacity 0.3s;
+}
+
+.butterfly:hover {
+  opacity: 0.9;
+  filter: drop-shadow(0 0 5px rgba(255,105,180,0.6));
+}
+
+/* Анимация полёта */
+@keyframes flyAround {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  20% {
+    transform: translate(15vw, -15vh) rotate(15deg);
+  }
+  40% {
+    transform: translate(-10vw, -25vh) rotate(-10deg);
+  }
+  60% {
+    transform: translate(20vw, -10vh) rotate(20deg);
+  }
+  80% {
+    transform: translate(-15vw, -20vh) rotate(-15deg);
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+}
+
+/* Вариант 2 - более плавный полёт */
+@keyframes flyAround2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.7;
+  }
+  30% {
+    transform: translate(25vw, -20vh) scale(1.1) rotate(10deg);
+  }
+  50% {
+    transform: translate(-20vw, -35vh) scale(0.9) rotate(-15deg);
+  }
+  70% {
+    transform: translate(15vw, -15vh) scale(1.05) rotate(8deg);
+  }
+  85% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Разные анимации для разных бабочек */
+.butterfly:nth-child(odd) {
+  animation-name: flyAround;
+}
+
+.butterfly:nth-child(even) {
+  animation-name: flyAround2;
 }
