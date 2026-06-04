@@ -36,7 +36,7 @@ const categories = [
   { 
     id: 4, 
     name: 'Аппаратная косметология', 
-    icon: '⚙️',
+    icon: '📱',
     services: [
       { id: 41, name: 'RF-лифтинг', price: 5000, duration: '60 мин' },
       { id: 42, name: 'Ультразвуковая чистка', price: 4000, duration: '50 мин' },
@@ -64,12 +64,7 @@ function Categories({ onSelectCategory }) {
 
   return (
     <div className="categories">
-      <div className="header-with-instagram">
-        <h1>Прайс-лист</h1>
-        <div className="instagram-icon" onClick={handleInstagramClick}>
-          <i className="fab fa-instagram"></i>
-        </div>
-      </div>
+      <h1>Прайс-лист</h1>
       <div className="categories-grid">
         {categories.map(cat => (
           <div 
@@ -83,6 +78,13 @@ function Categories({ onSelectCategory }) {
             <h3>{cat.name}</h3>
           </div>
         ))}
+        {/* Instagram иконка как отдельная карточка в сетке */}
+        <div className="category-card instagram-card" onClick={handleInstagramClick}>
+          <div className="icon-simple">
+            <i className="fab fa-instagram"></i>
+          </div>
+          <h3>Instagram</h3>
+        </div>
       </div>
     </div>
   )
