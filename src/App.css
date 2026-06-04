@@ -13,7 +13,6 @@ body {
   position: relative;
 }
 
-/* Фоновые цветы */
 body::before {
   content: '🌸🌷🌺🌼🌻🌹🥀🌿💐🌸🌷🌺🌼🌻🌹';
   position: fixed;
@@ -41,7 +40,6 @@ body::before {
   z-index: 1;
 }
 
-/* Заголовок */
 .categories h1 {
   font-family: 'Playfair Display', serif;
   font-size: 32px;
@@ -49,8 +47,6 @@ body::before {
   text-align: center;
   color: #f0a0b0;
   font-weight: 600;
-  letter-spacing: -0.5px;
-  position: relative;
 }
 
 .categories h1::after {
@@ -63,14 +59,12 @@ body::before {
   border-radius: 2px;
 }
 
-/* Сетка категорий */
 .categories-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 18px;
 }
 
-/* Карточка категории */
 .category-card {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(5px);
@@ -79,20 +73,40 @@ body::before {
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
   border: 1px solid rgba(240, 160, 176, 0.25);
 }
 
 .category-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
   background: rgba(255, 255, 255, 0.95);
   border-color: rgba(240, 160, 176, 0.5);
 }
 
-.category-card:active {
-  transform: scale(0.96);
-  transition: transform 0.05s;
+/* Все иконки одинакового размера и розового градиента */
+.icon-simple i {
+  font-size: 36px;
+  width: 60px;
+  height: 60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f0a0b0, #f8c0d0);
+  border-radius: 50%;
+  color: white !important;
+  margin-bottom: 8px;
+  transition: all 0.3s;
+}
+
+.category-card:hover .icon-simple i {
+  transform: scale(1.05);
+}
+
+.category-card h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e898a8;
+  margin-top: 8px;
 }
 
 /* Instagram карточка */
@@ -100,46 +114,13 @@ body::before {
   background: linear-gradient(135deg, #f0a0b0, #f8c0d0) !important;
 }
 
-.instagram-card i {
-  font-size: 36px;
-  color: white !important;
+.instagram-card .icon-simple i {
+  background: white !important;
+  color: #f0a0b0 !important;
 }
 
 .instagram-card h3 {
   color: white !important;
-}
-
-.instagram-card:hover {
-  transform: translateY(-6px);
-}
-
-/* Простая иконка без кружка */
-.icon-simple {
-  margin-bottom: 12px;
-  transition: all 0.3s;
-}
-
-.category-card:hover .icon-simple {
-  transform: scale(1.05);
-}
-
-/* Эмодзи иконка */
-.category-emoji {
-  font-size: 32px;
-  display: inline-block;
-}
-
-/* Название категории */
-.category-card h3 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  color: #e898a8;
-  margin-top: 8px;
-  letter-spacing: 0.3px;
-  word-break: break-word;
-  max-width: 100%;
-  line-height: 1.3;
 }
 
 /* Список услуг */
@@ -152,7 +133,6 @@ body::before {
 
 .service-card {
   background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(5px);
   border-radius: 18px;
   padding: 16px;
   display: flex;
@@ -161,24 +141,15 @@ body::before {
   cursor: pointer;
   transition: all 0.3s;
   border: 1px solid rgba(240, 160, 176, 0.2);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-.service-card:active {
-  transform: scale(0.98);
-  transition: transform 0.05s;
 }
 
 .service-card.selected {
   background: rgba(255, 220, 230, 0.95);
   border-color: #f0a0b0;
-  transform: scale(1.02);
 }
 
 .service-info h3 {
-  font-family: 'Poppins', sans-serif;
   font-size: 16px;
-  font-weight: 500;
   color: #c08898;
   margin-bottom: 4px;
 }
@@ -186,25 +157,20 @@ body::before {
 .service-info p {
   font-size: 12px;
   color: #d0a0b0;
-  font-weight: 300;
 }
 
 .service-price {
-  font-family: 'Playfair Display', serif;
   font-weight: 600;
   color: #e898a8;
   font-size: 18px;
 }
 
-/* Корзина */
 .cart-footer {
   position: sticky;
   bottom: 0;
   background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
   padding: 16px 20px;
   border-radius: 24px 24px 0 0;
-  box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.08);
   margin-top: 20px;
   border-top: 1px solid rgba(240, 160, 176, 0.25);
 }
@@ -213,9 +179,7 @@ body::before {
   display: flex;
   justify-content: space-between;
   margin-bottom: 12px;
-  font-weight: 500;
   color: #e898a8;
-  font-family: 'Poppins', sans-serif;
 }
 
 .cart-footer button {
@@ -226,47 +190,20 @@ body::before {
   padding: 14px;
   border-radius: 16px;
   font-size: 16px;
-  font-weight: 600;
-  font-family: 'Poppins', sans-serif;
   cursor: pointer;
-  transition: all 0.3s;
 }
 
-.cart-footer button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(240, 160, 176, 0.35);
-}
-
-.cart-footer button:active {
-  transform: scale(0.97);
-  transition: transform 0.05s;
-}
-
-/* Кнопка назад */
 .back-btn {
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid #f0a0b0;
   padding: 8px 18px;
   border-radius: 30px;
   font-size: 14px;
-  font-weight: 500;
-  font-family: 'Poppins', sans-serif;
   color: #e898a8;
   cursor: pointer;
   margin-bottom: 20px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.3s;
 }
 
-.back-btn:hover {
-  background: #f0a0b0;
-  color: white;
-  transform: translateX(-3px);
-}
-
-/* Форма */
 .booking-form {
   display: flex;
   flex-direction: column;
@@ -278,7 +215,6 @@ body::before {
   font-size: 26px;
   color: #e898a8;
   text-align: center;
-  margin-bottom: 10px;
 }
 
 .booking-form input {
@@ -286,51 +222,8 @@ body::before {
   border: 1px solid rgba(240, 160, 176, 0.3);
   border-radius: 14px;
   font-size: 15px;
-  font-family: 'Poppins', sans-serif;
   background: white;
   color: #c08898;
-  transition: all 0.3s;
-  font-weight: 500;
-}
-
-.booking-form input::placeholder {
-  color: #d0a0b0;
-  font-weight: 400;
-}
-
-.booking-form input:focus {
-  outline: none;
-  border-color: #f0a0b0;
-  box-shadow: 0 0 0 3px rgba(240, 160, 176, 0.15);
-  background: white;
-}
-
-.booking-form input[type="date"],
-.booking-form input[type="time"] {
-  color: #c08898;
-  background: white;
-  position: relative;
-}
-
-.booking-form input[type="date"]::-webkit-calendar-picker-indicator,
-.booking-form input[type="time"]::-webkit-calendar-picker-indicator {
-  filter: invert(0.4);
-  cursor: pointer;
-  opacity: 0.7;
-}
-
-.booking-form input[type="date"]::-webkit-calendar-picker-indicator:hover,
-.booking-form input[type="time"]::-webkit-calendar-picker-indicator:hover {
-  opacity: 1;
-}
-
-.booking-form input:-webkit-autofill,
-.booking-form input:-webkit-autofill:hover,
-.booking-form input:-webkit-autofill:focus,
-.booking-form input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px white inset !important;
-  box-shadow: 0 0 0 30px white inset !important;
-  -webkit-text-fill-color: #c08898 !important;
 }
 
 .booking-form button {
@@ -340,23 +233,12 @@ body::before {
   padding: 15px;
   border-radius: 16px;
   font-size: 16px;
-  font-weight: 600;
-  font-family: 'Poppins', sans-serif;
   cursor: pointer;
-  transition: all 0.3s;
-  margin-top: 8px;
 }
 
-.booking-form button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(240, 160, 176, 0.3);
-}
-
-/* Страница успеха */
 .success {
   text-align: center;
   padding: 60px 20px;
-  animation: fadeIn 0.5s ease;
 }
 
 .success-icon {
@@ -368,56 +250,8 @@ body::before {
   font-family: 'Playfair Display', serif;
   font-size: 28px;
   color: #e898a8;
-  margin-bottom: 12px;
 }
 
-.success p {
-  font-family: 'Poppins', sans-serif;
-  color: #d0a0b0;
-}
-
-.success button {
-  margin-top: 30px;
-  background: linear-gradient(135deg, #f0a0b0, #f8c0d0);
-  padding: 12px 32px;
-  border-radius: 30px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-}
-
-/* Анимации */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.categories, .category-services, .booking-form {
-  animation: fadeIn 0.4s ease-out;
-}
-
-.category-services h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 26px;
-  color: #e898a8;
-  margin-bottom: 8px;
-}
-
-.category-desc {
-  font-family: 'Poppins', sans-serif;
-  color: #d0a0b0;
-  margin-bottom: 20px;
-  font-size: 13px;
-}
-
-/* ========== ЛЕТАЮЩИЕ ЦВЕТЫ ========== */
 .flowers-container {
   position: fixed;
   top: 0;
@@ -432,73 +266,19 @@ body::before {
 .flower {
   position: absolute;
   animation: floatFlower 25s ease-in-out infinite;
-  filter: drop-shadow(0 0 2px rgba(240, 160, 176, 0.2));
-  transition: all 0.3s;
   color: #f0a0b0;
-  text-shadow: 0 0 2px rgba(240, 160, 176, 0.2);
-}
-
-.flower:hover {
-  opacity: 0.6 !important;
-  filter: drop-shadow(0 0 6px rgba(240, 160, 176, 0.4));
+  opacity: 0.35;
 }
 
 @keyframes floatFlower {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.35;
-  }
-  25% {
-    transform: translate(15vw, -10vh) rotate(12deg);
-  }
-  50% {
-    transform: translate(-10vw, -22vh) rotate(-8deg);
-  }
-  75% {
-    transform: translate(12vw, -12vh) rotate(6deg);
-  }
-  90% {
-    opacity: 0.35;
-  }
-  100% {
-    transform: translate(0, 0) rotate(0deg);
-    opacity: 0;
-  }
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.35; }
+  25% { transform: translate(15vw, -10vh) rotate(12deg); }
+  50% { transform: translate(-10vw, -22vh) rotate(-8deg); }
+  75% { transform: translate(12vw, -12vh) rotate(6deg); }
+  90% { opacity: 0.35; }
+  100% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
 }
 
-@keyframes floatFlower2 {
-  0% {
-    transform: translate(0, 0) scale(1) rotate(0deg);
-    opacity: 0;
-  }
-  15% {
-    opacity: 0.35;
-  }
-  30% {
-    transform: translate(-12vw, -15vh) scale(1.08) rotate(-10deg);
-  }
-  55% {
-    transform: translate(14vw, -25vh) scale(0.92) rotate(8deg);
-  }
-  75% {
-    transform: translate(-8vw, -10vh) scale(1.03) rotate(-5deg);
-  }
-  90% {
-    opacity: 0.35;
-  }
-  100% {
-    transform: translate(0, 0) scale(1) rotate(0deg);
-    opacity: 0;
-  }
-}
-
-.flower:nth-child(odd) {
-  animation-name: floatFlower;
-}
-
-.flower:nth-child(even) {
-  animation-name: floatFlower2;
-}
+.flower:nth-child(odd) { animation-name: floatFlower; }
+.flower:nth-child(even) { animation-name: floatFlower; }
