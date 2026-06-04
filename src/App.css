@@ -65,7 +65,7 @@ body::before {
   gap: 18px;
 }
 
-/* Карточка с центрированным содержимым */
+/* Карточка с центрированным содержимым и эффектами */
 .category-card {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(5px);
@@ -79,12 +79,48 @@ body::before {
   align-items: center;
   justify-content: center;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .category-card:hover {
   transform: translateY(-6px);
   background: rgba(255, 255, 255, 0.95);
   border-color: rgba(232, 152, 168, 0.5);
+}
+
+/* Эффект волны при нажатии */
+.category-card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(232, 152, 168, 0.4);
+  transform: translate(-50%, -50%);
+  transition: width 0.4s, height 0.4s, opacity 0.3s;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.category-card:active::after {
+  width: 300px;
+  height: 300px;
+  opacity: 1;
+  transition: width 0.2s, height 0.2s, opacity 0.1s;
+}
+
+/* Эффект вспышки */
+.category-card:active {
+  animation: cardFlash 0.15s ease-in-out;
+}
+
+@keyframes cardFlash {
+  0% { background: rgba(255, 255, 255, 0.85); }
+  50% { background: rgba(232, 152, 168, 0.25); }
+  100% { background: rgba(255, 255, 255, 0.85); }
 }
 
 /* Иконка по центру */
@@ -100,6 +136,17 @@ body::before {
   color: #e898a8 !important;
   display: inline-block;
   transition: all 0.3s;
+}
+
+/* Эффект пульсации иконки при нажатии */
+.icon-simple i:active {
+  animation: iconPop 0.2s ease-in-out;
+}
+
+@keyframes iconPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.8); }
+  100% { transform: scale(1); }
 }
 
 .category-card:hover .icon-simple i {
@@ -138,6 +185,11 @@ body::before {
   background: rgba(255, 255, 255, 0.95);
 }
 
+/* Эффекты для Instagram карточки */
+.instagram-card:active::after {
+  background: rgba(255, 255, 255, 0.5);
+}
+
 /* Список услуг */
 .services-list {
   display: flex;
@@ -157,6 +209,36 @@ body::before {
   cursor: pointer;
   transition: all 0.3s;
   border: 1px solid rgba(232, 152, 168, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card:active {
+  transform: scale(0.98);
+  background: rgba(232, 152, 168, 0.15);
+}
+
+/* Эффект волны для услуг */
+.service-card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(232, 152, 168, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, opacity 0.2s;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.service-card:active::after {
+  width: 200px;
+  height: 200px;
+  opacity: 1;
+  transition: width 0.15s, height 0.15s, opacity 0.1s;
 }
 
 .service-card.selected {
@@ -207,6 +289,11 @@ body::before {
   border-radius: 16px;
   font-size: 16px;
   cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cart-footer button:active {
+  transform: scale(0.97);
 }
 
 .back-btn {
@@ -218,6 +305,10 @@ body::before {
   color: #e898a8;
   cursor: pointer;
   margin-bottom: 20px;
+}
+
+.back-btn:active {
+  transform: scale(0.97);
 }
 
 .booking-form {
@@ -250,6 +341,10 @@ body::before {
   border-radius: 16px;
   font-size: 16px;
   cursor: pointer;
+}
+
+.booking-form button:active {
+  transform: scale(0.97);
 }
 
 .success {
